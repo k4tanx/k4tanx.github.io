@@ -144,6 +144,20 @@ body {
   font-weight: 700;
   color: #fff;
 }
+/* флаг */
+.value {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.flag {
+  width: 20px;
+  height: 14px;
+  border-radius: 2px;
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.15);
+  flex-shrink: 0;
+}
 
 /* кнопка discord */
 .btn {
