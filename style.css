@@ -27,6 +27,12 @@ body {
   align-items: center;
   justify-content: center;
   background: var(--bg-color);
+  /* ВОТ ЭТА СТРОКА ВОЗВРАЩАЕТ КАРТИНКУ: */
+  background-image: url('https://w.wallhaven.cc/full/rr/wallhaven-rryv1w.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   font-family: 'JetBrains Mono', monospace;
   color: #fff;
   overflow: hidden;
@@ -41,15 +47,13 @@ body {
   background:
     radial-gradient(circle at 20% 30%, rgba(var(--main-rgb), 0.35), transparent 50%),
     radial-gradient(circle at 80% 70%, rgba(var(--accent-rgb), 0.3), transparent 50%),
-    rgba(5, 5, 10, 0.65); 
+    /* Вот этот цвет задает затемнение поверх картинки. 
+       При смене темы он тоже поменяется на красный! */
+    var(--bg-color); 
+  opacity: 0.75; /* Прозрачность затемнения, чтобы картинку было видно */
   animation: pulse 6s ease-in-out infinite alternate;
   pointer-events: none;
   transition: background 0.5s ease;
-}
-
-@keyframes pulse {
-  from { opacity: 0.6; }
-  to   { opacity: 1; }
 }
 
 /* Карточка */
