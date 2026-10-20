@@ -368,21 +368,33 @@ canvas {
   .card { width: 90%; padding: 24px 20px; }
   .game-content { transform: translateX(0); } /* На телефонах сдвиг убираем, чтобы не вылезало */
 }
-/* ТУМБЛЕР (Бесконечные стены) */
-.toggle-container {
+/* ПАНЕЛЬ НАСТРОЕК ИГРЫ */
+.game-settings {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  gap: 8px;
-  margin-right: 10px;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 10px 15px;
+  border-radius: 10px;
+  margin-top: 15px;
+  margin-bottom: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.toggle-label {
+.setting-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.setting-label {
   font-size: 11px;
   font-weight: 700;
   color: #00ffaa;
   letter-spacing: 1px;
 }
 
+/* ТУМБЛЕР */
 .switch {
   position: relative;
   display: inline-block;
@@ -427,4 +439,44 @@ input:checked + .slider:before {
   transform: translateX(16px);
   background-color: #00ffaa;
   box-shadow: 0 0 10px #00ffaa;
+}
+
+/* РЕГУЛЯТОР СКОРОСТИ */
+.speed-control {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  padding: 2px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.speed-btn {
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.speed-btn:hover {
+  background: rgba(0, 255, 170, 0.2);
+  color: #00ffaa;
+}
+
+#speedValue {
+  font-size: 11px;
+  font-weight: 700;
+  color: #fff;
+  min-width: 70px;
+  text-align: center;
 }
