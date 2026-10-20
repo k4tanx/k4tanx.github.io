@@ -10,8 +10,6 @@ body {
   align-items: center;
   justify-content: center;
   background: #0a0a0f;
-  /* Если хотите картинку на фоне, раскомментируйте строку ниже и вставьте прямую ссылку */
-  /* background-image: url('https://w.wallhaven.cc/full/rr/wallhaven-rryv1w.jpg'); */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -22,19 +20,6 @@ body {
   position: relative;
 }
 
-/* ВИДЕО-ФОН (если используете) */
-.bg-video {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: -1;
-  pointer-events: none;
-}
-
-/* фоновое свечение + затемнение */
 .bg-glow {
   position: fixed;
   inset: 0;
@@ -51,7 +36,7 @@ body {
   to   { opacity: 1; }
 }
 
-/* карточка */
+/* КАРТОЧКА */
 .card {
   position: relative;
   z-index: 2;
@@ -73,7 +58,6 @@ body {
   to   { opacity: 1; transform: translateY(0) scale(1); }
 }
 
-/* аватар */
 .avatar {
   position: relative;
   width: 96px;
@@ -102,7 +86,6 @@ body {
   box-shadow: 0 0 10px #23a55a;
 }
 
-/* ник */
 .nick {
   font-size: 26px;
   font-weight: 800;
@@ -120,14 +103,12 @@ body {
   letter-spacing: 1px;
 }
 
-/* разделитель */
 .divider {
   height: 1px;
   margin: 20px 0;
   background: linear-gradient(90deg, transparent, rgba(0, 255, 170, 0.5), transparent);
 }
 
-/* строки с инфой */
 .rows {
   display: flex;
   flex-direction: column;
@@ -168,7 +149,6 @@ body {
   color: #fff;
 }
 
-/* флаг */
 .flag {
   width: 16px;
   height: 11px;
@@ -178,7 +158,7 @@ body {
   box-shadow: 0 0 4px rgba(255, 255, 255, 0.2);
 }
 
-/* Кнопки */
+/* КНОПКИ КАРТОЧКИ */
 .btn {
   display: flex;
   align-items: center;
@@ -223,7 +203,7 @@ body {
   box-shadow: 0 0 20px rgba(0, 255, 170, 0.4);
 }
 
-/* Модальное окно игр */
+/* МОДАЛЬНОЕ ОКНО */
 .game-modal {
   position: fixed;
   inset: 0;
@@ -243,17 +223,36 @@ body {
   pointer-events: all;
 }
 
+/* Смещение окна вправо */
 .game-content {
-  background: rgba(20, 20, 28, 0.95);
-  border: 1px solid rgba(0, 255, 170, 0.5);
-  border-radius: 20px;
-  padding: 24px;
+  background: #14141c;
+  border: 1px solid rgba(0, 255, 170, 0.3);
+  border-radius: 16px;
+  padding: 30px 24px 24px;
   width: 90%;
   max-width: 380px;
   position: relative;
-  box-shadow: 0 0 50px rgba(0, 255, 170, 0.3);
+  box-shadow: 
+    0 20px 50px rgba(0, 0, 0, 0.8),
+    0 0 30px rgba(0, 255, 170, 0.1);
   text-align: center;
+  
+  /* Сдвиг вправо (меняйте 40px на нужное значение) */
+  transform: translateX(40px); 
 }
+
+/* Декоративные углы */
+.corner-decor {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  border: 2px solid #00ffaa;
+  pointer-events: none;
+}
+.corner-decor.tl { top: -1px; left: -1px; border-right: none; border-bottom: none; border-top-left-radius: 16px; }
+.corner-decor.tr { top: -1px; right: -1px; border-left: none; border-bottom: none; border-top-right-radius: 16px; }
+.corner-decor.bl { bottom: -1px; left: -1px; border-right: none; border-top: none; border-bottom-left-radius: 16px; }
+.corner-decor.br { bottom: -1px; right: -1px; border-left: none; border-top: none; border-bottom-right-radius: 16px; }
 
 .close-btn {
   position: absolute;
@@ -265,43 +264,59 @@ body {
   font-size: 28px;
   cursor: pointer;
   transition: 0.2s;
+  z-index: 10;
 }
 
 .close-btn:hover {
   color: #00ffaa;
+  transform: scale(1.1);
 }
 
+/* КРАСИВЫЕ ТАБЫ */
 .game-tabs {
   display: flex;
   gap: 10px;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
   margin-top: 10px;
+  background: rgba(0,0,0,0.3);
+  padding: 5px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.05);
 }
 
 .tab-btn {
   flex: 1;
-  padding: 8px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px;
+  background: transparent;
+  border: none;
   color: #6b7280;
   font-family: inherit;
   font-weight: 700;
+  font-size: 12px;
   border-radius: 8px;
   cursor: pointer;
-  transition: 0.2s;
+  transition: 0.3s;
   letter-spacing: 1px;
 }
 
+.tab-icon {
+  font-size: 14px;
+}
+
 .tab-btn.active {
-  background: rgba(0, 255, 170, 0.15);
-  border-color: #00ffaa;
+  background: linear-gradient(135deg, rgba(0, 255, 170, 0.15), rgba(0, 170, 255, 0.15));
   color: #00ffaa;
-  box-shadow: 0 0 10px rgba(0, 255, 170, 0.2);
+  box-shadow: 0 4px 15px rgba(0, 255, 170, 0.1);
+  text-shadow: 0 0 10px rgba(0, 255, 170, 0.5);
 }
 
 .tab-btn:hover:not(.active) {
-  background: rgba(255, 255, 255, 0.1);
   color: #fff;
+  background: rgba(255,255,255,0.05);
 }
 
 .game-view {
@@ -332,10 +347,11 @@ canvas {
   font-size: 16px;
   font-weight: 800;
   color: #fff;
+  text-shadow: 0 0 10px rgba(255,255,255,0.3);
 }
 
 .game-hint {
-  margin-top: 10px;
+  margin-top: 12px;
   font-size: 11px;
   color: #6b7280;
   letter-spacing: 1px;
@@ -348,6 +364,7 @@ canvas {
   font-size: 12px;
 }
 
-@media (max-width: 400px) {
+@media (max-width: 480px) {
   .card { width: 90%; padding: 24px 20px; }
+  .game-content { transform: translateX(0); } /* На телефонах сдвиг убираем, чтобы не вылезало */
 }
