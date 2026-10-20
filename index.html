@@ -85,18 +85,31 @@
         <canvas id="gameCanvas" width="320" height="240"></canvas>
       </div>
 
-      <div class="game-controls">
-        <span id="gameScore">Счёт: 0</span>
+      <!-- НАСТРОЙКИ ИГРЫ -->
+      <div class="game-settings" id="snakeSettings">
         
-        <!-- Новый тумблер бесконечных стен -->
-        <div class="toggle-container">
-          <span class="toggle-label">∞ Стены</span>
+        <!-- Тумблер стен -->
+        <div class="setting-item">
+          <span class="setting-label">∞ Стены</span>
           <label class="switch">
             <input type="checkbox" id="wrapToggle">
             <span class="slider"></span>
           </label>
         </div>
 
+        <!-- Регулятор скорости -->
+        <div class="setting-item">
+          <span class="setting-label">Скорость</span>
+          <div class="speed-control">
+            <button class="speed-btn" id="speedMinus">-</button>
+            <span id="speedValue">Средняя</span>
+            <button class="speed-btn" id="speedPlus">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="game-controls">
+        <span id="gameScore">Счёт: 0</span>
         <button class="btn" id="startGameBtn">СТАРТ</button>
       </div>
       
@@ -113,16 +126,51 @@
     const startGameBtn = document.getElementById('startGameBtn');
     const gameScoreEl = document.getElementById('gameScore');
     const gameHint = document.getElementById('gameHint');
-    const wrapToggle = document.getElementById('wrapToggle'); // Получаем тумблер
+    const wrapToggle = document.getElementById('wrapToggle');
     
     const tabSnake = document.getElementById('tabSnake');
     const tabDino = document.getElementById('tabDino');
+    
+    // Элементы настроек
+    const snakeSettings = document.getElementById('snakeSettings');
+    const speedMinus = document.getElementById('speedMinus');
+    const speedPlus = document.getElementById('speedPlus');
+    const speedValueText = document.getElementById('speedValue');
 
     let currentGame = 'snake'; 
     let gameLoop;
     let isPlaying = false;
     let score = 0;
 
+    // Настройки скорости (индексы: 0 - Медленная, 1 - Средняя, 2 - Быстрая, 3 - Хардкор)
+    const speeds = [
+      { delay: 160, name: 'Медленная' },
+      { delay: 120, name: 'Средняя' },
+      { delay: 80, name: 'Быстрая' },
+      { delay: 50, name: 'Хардкор' }
+    ];
+    let currentSpeedIndex = 1; // По умолчанию средняя
+
+    // Обработка кнопок скорости
+    function updateSpeedText() {
+      speedValueText.innerText = speeds[currentSpeedIndex].name;
+    }
+
+    speedMinus.addEventListener('click', () => {
+      if (currentSpeedIndex > 0) {
+        currentSpeedIndex--;
+        updateSpeedText();
+      }
+    });
+
+    speedPlus.addEventListener('click', () => {
+      if (currentSpeedIndex < speeds.length - 1) {
+        currentSpeedIndex++;
+        updateSpeedText();
+      }
+    });
+
+    // Модальное окно
     playBtn.addEventListener('click', () => {
       gameModal.classList.add('active');
       resetGameView();
@@ -143,11 +191,11 @@
       tabDino.classList.toggle('active', game === 'dino');
       resetGameView();
       
-      // Прячем тумблер, если выбрана игра ДИНО (он там не нужен)
+      // Прячем настройки змейки, если выбрано ДИНО
       if (game === 'snake') {
-        wrapToggle.parentElement.style.display = 'flex';
+        snakeSettings.style.display = 'flex';
       } else {
-        wrapToggle.parentElement.style.display = 'none';
+        snakeSettings.style.display = 'none';
       }
     }
 
@@ -186,6 +234,7 @@
 
     // --- ЗМЕЙКА ---
     let snake, food, dx, dy, snakeTimer;
+    let nextDx = null, nextDy = null; // Буфер для нажатий (фикс быстрых кликов)
     const grid = 16;
     const tileCountX = canvas.width / grid;
     const tileCountY = canvas.height / grid;
@@ -198,12 +247,16 @@
       ];
       dx = grid; 
       dy = 0;
+      nextDx = null;
+      nextDy = null;
+      
       spawnFood();
       score = 0;
       gameScoreEl.innerText = `Счёт: ${score}`;
       
       clearInterval(snakeTimer);
-      snakeTimer = setInterval(updateSnake, 100);
+      // Запускаем с выбранной скоростью
+      snakeTimer = setInterval(updateSnake, speeds[currentSpeedIndex].delay);
       
       document.removeEventListener('keydown', snakeControls);
       document.addEventListener('keydown', snakeControls);
@@ -224,14 +277,24 @@
 
     function snakeControls(e) {
       if (!isPlaying || currentGame !== 'snake') return;
-      if (['ArrowUp', 'w', 'W'].includes(e.key) && dy === 0) { dx = 0; dy = -grid; e.preventDefault(); }
-      if (['ArrowDown', 's', 'S'].includes(e.key) && dy === 0) { dx = 0; dy = grid; e.preventDefault(); }
-      if (['ArrowLeft', 'a', 'A'].includes(e.key) && dx === 0) { dx = -grid; dy = 0; e.preventDefault(); }
-      if (['ArrowRight', 'd', 'D'].includes(e.key) && dx === 0) { dx = grid; dy = 0; e.preventDefault(); }
+      
+      // Записываем нажатия в буфер, не меняя направление напрямую
+      if (['ArrowUp', 'w', 'W'].includes(e.key) && dy === 0 && nextDy !== grid) { nextDx = 0; nextDy = -grid; e.preventDefault(); }
+      if (['ArrowDown', 's', 'S'].includes(e.key) && dy === 0 && nextDy !== -grid) { nextDx = 0; nextDy = grid; e.preventDefault(); }
+      if (['ArrowLeft', 'a', 'A'].includes(e.key) && dx === 0 && nextDx !== grid) { nextDx = -grid; nextDy = 0; e.preventDefault(); }
+      if (['ArrowRight', 'd', 'D'].includes(e.key) && dx === 0 && nextDx !== -grid) { nextDx = grid; nextDy = 0; e.preventDefault(); }
     }
 
     function updateSnake() {
       if (!isPlaying) return;
+
+      // Применяем буфер нажатий (только 1 поворот за такт)
+      if (nextDx !== null && nextDy !== null) {
+        dx = nextDx;
+        dy = nextDy;
+        nextDx = null;
+        nextDy = null;
+      }
       
       let head = { x: snake[0].x + dx, y: snake[0].y + dy };
       
