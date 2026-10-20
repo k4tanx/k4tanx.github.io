@@ -1,60 +1,408 @@
-/* ТУМБЛЕР (Бесконечные стены) */
-.toggle-container {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-right: 10px;
-}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>k4tanx</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  
+  <div class="bg-glow"></div>
 
-.toggle-label {
-  font-size: 11px;
-  font-weight: 700;
-  color: #00ffaa;
-  letter-spacing: 1px;
-}
+  <main class="card">
+    <div class="avatar">
+      <img src="https://avatars.mds.yandex.net/i?id=d28a73ab23ee3339c83b6ccfb87ba900905f82e3-5287696-images-thumbs&n=13" alt="avatar">
+      <span class="status"></span>
+    </div>
 
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 34px;
-  height: 18px;
-}
+    <h1 class="nick">k4tanx</h1>
+    <p class="tag">@k4tanx</p>
 
-.switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
+    <div class="divider"></div>
 
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background-color: rgba(255, 255, 255, 0.1);
-  transition: .4s;
-  border-radius: 18px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-}
+    <div class="rows">
+      <div class="row">
+        <span class="label">CHEAT</span>
+        <span class="value">Catlean</span>
+      </div>
+      <div class="row">
+        <span class="label">JOB</span>
+        <span class="value">l33t STAFF</span>
+      </div>
+      <div class="row">
+        <span class="label">COUNTRY</span>
+        <span class="value">
+          Russian Federation
+          <svg class="flag" viewBox="0 0 9 6" xmlns="http://www.w3.org/2000/svg">
+            <rect width="9" height="2" fill="#fff"/>
+            <rect y="2" width="9" height="2" fill="#0039a6"/>
+            <rect y="4" width="9" height="2" fill="#d52b1e"/>
+          </svg>
+        </span>
+      </div>
+    </div>
 
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 12px;
-  width: 12px;
-  left: 2px;
-  bottom: 2px;
-  background-color: #6b7280;
-  transition: .4s;
-  border-radius: 50%;
-}
+    <div class="divider"></div>
 
-input:checked + .slider {
-  background-color: rgba(0, 255, 170, 0.2);
-  border-color: #00ffaa;
-}
+    <button class="btn btn-game" id="playBtn">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M8 5v14l11-7z"/>
+      </svg>
+      PLAY MINIGAME
+    </button>
 
-input:checked + .slider:before {
-  transform: translateX(16px);
-  background-color: #00ffaa;
-  box-shadow: 0 0 10px #00ffaa;
-}
+    <a class="btn" href="https://discord.com/users/YOUR_DISCORD_ID" target="_blank">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M20.317 4.37a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.099.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
+      </svg>
+      DISCORD
+    </a>
+  </main>
+
+  <div class="game-modal" id="gameModal">
+    <div class="game-content">
+      <div class="corner-decor tl"></div>
+      <div class="corner-decor tr"></div>
+      <div class="corner-decor bl"></div>
+      <div class="corner-decor br"></div>
+
+      <button class="close-btn" id="closeBtn">&times;</button>
+      
+      <div class="game-tabs">
+        <button class="tab-btn active" id="tabSnake">
+          <span class="tab-icon">🐍</span> ЗМЕЙКА
+        </button>
+        <button class="tab-btn" id="tabDino">
+          <span class="tab-icon">🦖</span> ДИНО
+        </button>
+      </div>
+
+      <div class="game-view" id="gameView">
+        <canvas id="gameCanvas" width="320" height="240"></canvas>
+      </div>
+
+      <div class="game-controls">
+        <span id="gameScore">Счёт: 0</span>
+        
+        <!-- Новый тумблер бесконечных стен -->
+        <div class="toggle-container">
+          <span class="toggle-label">∞ Стены</span>
+          <label class="switch">
+            <input type="checkbox" id="wrapToggle">
+            <span class="slider"></span>
+          </label>
+        </div>
+
+        <button class="btn" id="startGameBtn">СТАРТ</button>
+      </div>
+      
+      <p class="game-hint" id="gameHint">Стрелки / WASD для движения</p>
+    </div>
+  </div>
+
+  <script>
+    const canvas = document.getElementById('gameCanvas');
+    const ctx = canvas.getContext('2d');
+    const playBtn = document.getElementById('playBtn');
+    const gameModal = document.getElementById('gameModal');
+    const closeBtn = document.getElementById('closeBtn');
+    const startGameBtn = document.getElementById('startGameBtn');
+    const gameScoreEl = document.getElementById('gameScore');
+    const gameHint = document.getElementById('gameHint');
+    const wrapToggle = document.getElementById('wrapToggle'); // Получаем тумблер
+    
+    const tabSnake = document.getElementById('tabSnake');
+    const tabDino = document.getElementById('tabDino');
+
+    let currentGame = 'snake'; 
+    let gameLoop;
+    let isPlaying = false;
+    let score = 0;
+
+    playBtn.addEventListener('click', () => {
+      gameModal.classList.add('active');
+      resetGameView();
+    });
+
+    closeBtn.addEventListener('click', () => {
+      gameModal.classList.remove('active');
+      stopGame();
+    });
+
+    tabSnake.addEventListener('click', () => switchGame('snake'));
+    tabDino.addEventListener('click', () => switchGame('dino'));
+
+    function switchGame(game) {
+      if (isPlaying) return; 
+      currentGame = game;
+      tabSnake.classList.toggle('active', game === 'snake');
+      tabDino.classList.toggle('active', game === 'dino');
+      resetGameView();
+      
+      // Прячем тумблер, если выбрана игра ДИНО (он там не нужен)
+      if (game === 'snake') {
+        wrapToggle.parentElement.style.display = 'flex';
+      } else {
+        wrapToggle.parentElement.style.display = 'none';
+      }
+    }
+
+    function resetGameView() {
+      stopGame();
+      startGameBtn.innerText = 'СТАРТ';
+      gameScoreEl.innerText = 'Счёт: 0';
+      canvas.width = 320;
+      canvas.height = 240;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      if (currentGame === 'snake') {
+        gameHint.innerText = 'Стрелки / WASD для движения';
+      } else {
+        gameHint.innerText = 'Пробел или Стрелка Вверх для прыжка';
+      }
+    }
+
+    function stopGame() {
+      isPlaying = false;
+      cancelAnimationFrame(gameLoop);
+      clearInterval(snakeTimer);
+      clearInterval(dinoTimer);
+    }
+
+    startGameBtn.addEventListener('click', () => {
+      if (isPlaying) return;
+      resetGameView();
+      isPlaying = true;
+      score = 0;
+      startGameBtn.innerText = 'В ИГРЕ...';
+      
+      if (currentGame === 'snake') startSnake();
+      if (currentGame === 'dino') startDino();
+    });
+
+    // --- ЗМЕЙКА ---
+    let snake, food, dx, dy, snakeTimer;
+    const grid = 16;
+    const tileCountX = canvas.width / grid;
+    const tileCountY = canvas.height / grid;
+
+    function startSnake() {
+      snake = [
+        {x: 160, y: 112}, 
+        {x: 144, y: 112}, 
+        {x: 128, y: 112}
+      ];
+      dx = grid; 
+      dy = 0;
+      spawnFood();
+      score = 0;
+      gameScoreEl.innerText = `Счёт: ${score}`;
+      
+      clearInterval(snakeTimer);
+      snakeTimer = setInterval(updateSnake, 100);
+      
+      document.removeEventListener('keydown', snakeControls);
+      document.addEventListener('keydown', snakeControls);
+    }
+
+    function spawnFood() {
+      let newFood;
+      let isOccupied = true;
+      while (isOccupied) {
+        newFood = {
+          x: Math.floor(Math.random() * tileCountX) * grid,
+          y: Math.floor(Math.random() * tileCountY) * grid
+        };
+        isOccupied = snake.some(part => part.x === newFood.x && part.y === newFood.y);
+      }
+      food = newFood;
+    }
+
+    function snakeControls(e) {
+      if (!isPlaying || currentGame !== 'snake') return;
+      if (['ArrowUp', 'w', 'W'].includes(e.key) && dy === 0) { dx = 0; dy = -grid; e.preventDefault(); }
+      if (['ArrowDown', 's', 'S'].includes(e.key) && dy === 0) { dx = 0; dy = grid; e.preventDefault(); }
+      if (['ArrowLeft', 'a', 'A'].includes(e.key) && dx === 0) { dx = -grid; dy = 0; e.preventDefault(); }
+      if (['ArrowRight', 'd', 'D'].includes(e.key) && dx === 0) { dx = grid; dy = 0; e.preventDefault(); }
+    }
+
+    function updateSnake() {
+      if (!isPlaying) return;
+      
+      let head = { x: snake[0].x + dx, y: snake[0].y + dy };
+      
+      // Проверка на бесконечные стены (Wrap)
+      if (wrapToggle.checked) {
+        if (head.x < 0) head.x = canvas.width - grid;
+        if (head.x >= canvas.width) head.x = 0;
+        if (head.y < 0) head.y = canvas.height - grid;
+        if (head.y >= canvas.height) head.y = 0;
+      } else {
+        if (head.x < 0 || head.x >= canvas.width || head.y < 0 || head.y >= canvas.height) {
+          return endGame('ВЫ ПРОИГРАЛИ');
+        }
+      }
+      
+      for (let i = 0; i < snake.length; i++) {
+        if (head.x === snake[i].x && head.y === snake[i].y) {
+          return endGame('ВЫ ПРОИГРАЛИ');
+        }
+      }
+
+      snake.unshift(head);
+
+      if (head.x === food.x && head.y === food.y) {
+        score += 10;
+        gameScoreEl.innerText = `Счёт: ${score}`;
+        spawnFood();
+      } else {
+        snake.pop();
+      }
+      
+      drawSnake();
+    }
+
+    function drawSnake() {
+      ctx.fillStyle = '#0a0a0f';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.03)';
+      ctx.lineWidth = 1;
+      for (let i = 0; i <= canvas.width; i += grid) {
+        ctx.beginPath(); ctx.moveTo(i, 0); ctx.lineTo(i, canvas.height); ctx.stroke();
+      }
+      for (let i = 0; i <= canvas.height; i += grid) {
+        ctx.beginPath(); ctx.moveTo(0, i); ctx.lineTo(canvas.width, i); ctx.stroke();
+      }
+
+      ctx.fillStyle = '#00aaff';
+      ctx.shadowBlur = 10;
+      ctx.shadowColor = '#00aaff';
+      ctx.fillRect(food.x + 2, food.y + 2, grid - 4, grid - 4);
+
+      snake.forEach((part, index) => {
+        ctx.fillStyle = index === 0 ? '#00ffaa' : '#00ffaa66';
+        ctx.shadowBlur = index === 0 ? 15 : 5;
+        ctx.fillRect(part.x + 1, part.y + 1, grid - 2, grid - 2);
+      });
+      ctx.shadowBlur = 0;
+    }
+
+    // --- ДИНО ---
+    let dino, obstacles, dinoY, velocity, gravity, dinoTimer, jumpForce;
+    const groundY = 200;
+
+    function startDino() {
+      dino = { x: 50, y: groundY - 30, w: 20, h: 30 };
+      obstacles = [];
+      dinoY = 0;
+      velocity = 0;
+      gravity = 0.6;
+      jumpForce = -10;
+      score = 0;
+      gameScoreEl.innerText = `Счёт: ${score}`;
+      
+      clearInterval(dinoTimer);
+      dinoTimer = setInterval(updateDino, 1000 / 60);
+      
+      document.removeEventListener('keydown', dinoControls);
+      document.addEventListener('keydown', dinoControls);
+    }
+
+    function dinoControls(e) {
+      if (!isPlaying || currentGame !== 'dino') return;
+      if ((e.code === 'Space' || e.key === 'ArrowUp' || e.key === 'w' || e.key === 'W') && dinoY === 0) {
+        velocity = jumpForce;
+        dinoY = -1;
+        e.preventDefault();
+      }
+    }
+
+    function updateDino() {
+      if (!isPlaying) return;
+      ctx.fillStyle = '#0a0a0f';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      dinoY += velocity;
+      velocity += gravity;
+
+      if (dinoY > 0) {
+        dinoY = 0;
+        velocity = 0;
+      }
+      dino.y = groundY - dino.h + dinoY;
+
+      if (Math.random() < 0.02 && (obstacles.length === 0 || obstacles[obstacles.length - 1].x < canvas.width - 150)) {
+        obstacles.push({ x: canvas.width, y: groundY - 30, w: 15, h: 30 });
+      }
+
+      ctx.strokeStyle = '#ffffff33';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(0, groundY);
+      ctx.lineTo(canvas.width, groundY);
+      ctx.stroke();
+
+      ctx.fillStyle = '#00ffaa';
+      ctx.shadowBlur = 15;
+      ctx.shadowColor = '#00ffaa';
+      ctx.fillRect(dino.x, dino.y, dino.w, dino.h);
+
+      ctx.fillStyle = '#00aaff';
+      ctx.shadowColor = '#00aaff';
+      for (let i = obstacles.length - 1; i >= 0; i--) {
+        let obs = obstacles[i];
+        obs.x -= 5;
+
+        if (
+          dino.x < obs.x + obs.w &&
+          dino.x + dino.w > obs.x &&
+          dino.y < obs.y + obs.h &&
+          dino.y + dino.h > obs.y
+        ) {
+          return endGame('ИГРА ОКОНЧЕНА');
+        }
+
+        ctx.fillRect(obs.x, obs.y, obs.w, obs.h);
+
+        if (obs.x + obs.w < 0) {
+          obstacles.splice(i, 1);
+          score++;
+          gameScoreEl.innerText = `Счёт: ${score}`;
+        }
+      }
+      ctx.shadowBlur = 0;
+    }
+
+    function endGame(text) {
+      isPlaying = false;
+      clearInterval(snakeTimer);
+      clearInterval(dinoTimer);
+      
+      startGameBtn.innerText = 'ЗАНОВО';
+      
+      ctx.fillStyle = 'rgba(0,0,0,0.7)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      
+      ctx.fillStyle = '#ec4899';
+      ctx.font = 'bold 24px "JetBrains Mono", monospace';
+      ctx.textAlign = 'center';
+      ctx.fillText(text, canvas.width / 2, canvas.height / 2 - 10);
+      
+      ctx.fillStyle = '#fff';
+      ctx.font = '14px "JetBrains Mono", monospace';
+      ctx.fillText(`Ваш счёт: ${score}`, canvas.width / 2, canvas.height / 2 + 20);
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && gameModal.classList.contains('active')) {
+        closeBtn.click();
+      }
+    });
+  </script>
+</body>
+</html>
