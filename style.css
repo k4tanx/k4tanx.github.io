@@ -34,32 +34,6 @@ body {
   transition: background 0.5s ease;
 }
 
-/* Кнопка смены темы */
-.theme-switch {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: #fff;
-  font-family: inherit;
-  font-weight: 700;
-  font-size: 11px;
-  padding: 8px 12px;
-  border-radius: 8px;
-  cursor: pointer;
-  z-index: 999;
-  transition: 0.3s;
-  letter-spacing: 1px;
-}
-
-.theme-switch:hover {
-  background: rgba(var(--main-rgb), 0.2);
-  border-color: var(--main-color);
-  color: var(--main-color);
-  box-shadow: 0 0 15px rgba(var(--main-rgb), 0.3);
-}
-
 /* Фоновое свечение */
 .bg-glow {
   position: fixed;
@@ -115,13 +89,42 @@ body {
   box-shadow: 0 0 10px #23a55a;
 }
 
+/* Обертка для ника и кнопки */
+.nick-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 4px;
+}
+
 .nick {
   font-size: 26px; font-weight: 800; letter-spacing: 2px;
   background: linear-gradient(90deg, var(--main-color), var(--accent-color));
   -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
 }
 
-.tag { font-size: 12px; color: #6b7280; margin-top: 4px; letter-spacing: 1px; }
+/* Маленькая кнопка смены темы */
+.theme-switch {
+  background: rgba(var(--main-rgb), 0.1);
+  border: 1px solid rgba(var(--main-rgb), 0.3);
+  color: var(--main-color);
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.theme-switch:hover {
+  background: rgba(var(--main-rgb), 0.3);
+  box-shadow: 0 0 15px rgba(var(--main-rgb), 0.5);
+  transform: rotate(30deg) scale(1.1);
+}
+
+.theme-switch svg { width: 14px; height: 14px; }
+
+.tag { font-size: 12px; color: #6b7280; letter-spacing: 1px; }
 
 .divider {
   height: 1px; margin: 20px 0;
@@ -208,17 +211,4 @@ body {
 .tab-btn.active {
   background: linear-gradient(135deg, rgba(var(--main-rgb), 0.15), rgba(var(--accent-rgb), 0.15));
   color: var(--main-color); box-shadow: 0 4px 15px rgba(var(--main-rgb), 0.1);
-  text-shadow: 0 0 10px rgba(var(--main-rgb), 0.5);
-}
-.tab-btn:hover:not(.active) { color: #fff; background: rgba(255,255,255,0.05); }
-
-.game-view { width: 100%; display: flex; justify-content: center; border-radius: 10px; overflow: hidden; border: 1px solid rgba(var(--main-rgb), 0.3); box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.8); transition: 0.5s; }
-canvas { display: block; background: #0a0a0f; max-width: 100%; height: auto; }
-
-/* НАСТРОЙКИ */
-.game-settings {
-  display: flex; justify-content: space-between; align-items: center;
-  background: rgba(0, 0, 0, 0.3); padding: 10px 15px; border-radius: 10px;
-  margin-top: 15px; margin-bottom: 5px; border: 1px solid rgba(255, 255, 255, 0.05);
-}
-.setting-item { display: flex; align-items: center; gap: 10px; }
+  text-shadow: 0 0 
