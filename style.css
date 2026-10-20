@@ -368,3 +368,63 @@ canvas {
   .card { width: 90%; padding: 24px 20px; }
   .game-content { transform: translateX(0); } /* На телефонах сдвиг убираем, чтобы не вылезало */
 }
+/* ТУМБЛЕР (Бесконечные стены) */
+.toggle-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-right: 10px;
+}
+
+.toggle-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: #00ffaa;
+  letter-spacing: 1px;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 34px;
+  height: 18px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: rgba(255, 255, 255, 0.1);
+  transition: .4s;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 12px;
+  width: 12px;
+  left: 2px;
+  bottom: 2px;
+  background-color: #6b7280;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: rgba(0, 255, 170, 0.2);
+  border-color: #00ffaa;
+}
+
+input:checked + .slider:before {
+  transform: translateX(16px);
+  background-color: #00ffaa;
+  box-shadow: 0 0 10px #00ffaa;
+}
