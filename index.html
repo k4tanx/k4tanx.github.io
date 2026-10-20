@@ -11,9 +11,6 @@
 </head>
 <body class="theme-cyan">
 
-  <!-- Кнопка смены темы -->
-  <button class="theme-switch" id="themeBtn">🎨 СМЕНИТЬ ТЕМУ</button>
-  
   <div class="bg-glow"></div>
 
   <main class="card">
@@ -22,7 +19,16 @@
       <span class="status"></span>
     </div>
 
-    <h1 class="nick">k4tanx</h1>
+    <!-- Обертка для ника и кнопки палитры -->
+    <div class="nick-wrapper">
+      <h1 class="nick">k4tanx</h1>
+      <button class="theme-switch" id="themeBtn" title="Сменить тему">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 3a9 9 0 0 0 0 18c.83 0 1.5-.67 1.5-1.5 0-.39-.15-.74-.39-1.01-.23-.26-.38-.61-.38-.99 0-.83.67-1.5 1.5-1.5H16a5 5 0 0 0 5-5c0-4.42-4.03-8-9-8zm-5.5 9c-.83 0-1.5-.67-1.5-1.5S5.67 9 6.5 9 8 9.67 8 10.5 7.33 12 6.5 12zm3-4C8.67 8 8 7.33 8 6.5S8.67 5 9.5 5s1.5.67 1.5 1.5S10.33 8 9.5 8zm5 0c-.83 0-1.5-.67-1.5-1.5S13.67 5 14.5 5s1.5.67 1.5 1.5S15.33 8 14.5 8zm3 4c-.83 0-1.5-.67-1.5-1.5S16.67 9 17.5 9s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/>
+        </svg>
+      </button>
+    </div>
+    
     <p class="tag">@k4tanx</p>
 
     <div class="divider"></div>
@@ -120,15 +126,21 @@
     const themeBtn = document.getElementById('themeBtn');
     const bodyEl = document.body;
     
+    // Проверяем сохраненную тему при загрузке
+    if (localStorage.getItem('theme') === 'red') {
+      bodyEl.classList.remove('theme-cyan');
+      bodyEl.classList.add('theme-red');
+    }
+
     themeBtn.addEventListener('click', () => {
       if (bodyEl.classList.contains('theme-cyan')) {
         bodyEl.classList.remove('theme-cyan');
         bodyEl.classList.add('theme-red');
-        themeBtn.innerText = '🎨 ТЕМА: КРОВАВАЯ';
+        localStorage.setItem('theme', 'red');
       } else {
         bodyEl.classList.remove('theme-red');
         bodyEl.classList.add('theme-cyan');
-        themeBtn.innerText = '🎨 ТЕМА: КИБЕРПАНК';
+        localStorage.setItem('theme', 'cyan');
       }
     });
 
@@ -153,7 +165,7 @@
     let currentGame = 'snake'; 
     let isPlaying = false;
     let score = 0;
-    let isBossMode = false; // Секретный режим
+    let isBossMode = false;
 
     const speeds = [
       { delay: 160, name: 'Медленная' },
@@ -205,7 +217,8 @@
       canvas.width = 320;
       canvas.height = 240;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      gameHint.innerText = currentGame === 'snake' ? 'Стрелки / WASD' : 'Пробел / Стрелка Вверх';
+      gameHint.style.color = '#6b7280';
+      gameHint.innerText = currentGame === 'snake' ? 'Стрелки / WASD для движения' : 'Пробел или Стрелка Вверх для прыжка';
     }
 
     function stopGame() {
@@ -298,11 +311,11 @@
         score += 10;
         gameScoreEl.innerText = `Счёт: ${score}`;
         
-        // Секретный режим на 50 очков
+        // Секретный режим
         if (score === 50 && !isBossMode) {
           isBossMode = true;
           clearInterval(snakeTimer);
-          snakeTimer = setInterval(updateSnake, speeds[currentSpeedIndex].delay / 2); // Ускорение х2
+          snakeTimer = setInterval(updateSnake, speeds[currentSpeedIndex].delay / 2);
           gameHint.innerText = '🔥 BOSS MODE АКТИВИРОВАН!';
           gameHint.style.color = '#ec4899';
         }
@@ -323,7 +336,6 @@
       for (let i = 0; i <= canvas.width; i += grid) { ctx.beginPath(); ctx.moveTo(i, 0); ctx.lineTo(i, canvas.height); ctx.stroke(); }
       for (let i = 0; i <= canvas.height; i += grid) { ctx.beginPath(); ctx.moveTo(0, i); ctx.lineTo(canvas.width, i); ctx.stroke(); }
 
-      // Яблоко (красное в босс-режиме)
       ctx.fillStyle = isBossMode ? '#ec4899' : '#00aaff';
       ctx.shadowBlur = isBossMode ? 20 : 10;
       ctx.shadowColor = isBossMode ? '#ec4899' : '#00aaff';
